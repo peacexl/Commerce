@@ -1,0 +1,24 @@
+{
+  "name": "commerce",
+  "version": "1.0.0",
+  "description": "a shopping web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dev": "npx tailwindcss -i ./src/style.css -o ./dist/style.css --watch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peacexl/Commerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peacexl/Commerce/issues"
+  },
+  "homepage": "https://github.com/peacexl/Commerce#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
