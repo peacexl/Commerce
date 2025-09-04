@@ -1,342 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Commerce</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExcelExchange</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="mx-10">
-  
-<header class="">
-  <div class="sticky top-0 z-50 bg-white shadow-md px-6 py-3 flex items-center gap-4">
-    <div class="flex items-center">
-  <p class="h-12 w-12 object-contain text-[3em] font-bold flex items-center justify-center text-red-600">EX</p>
-  <div class="flex flex-col items-start ml-[0.5em]">
-    <p class="text-[20px] leading-tight text-red-600 w-[100px] ">CEL</p>
-    <p class="text-[20px] leading-tight text-red-600 w-[70px]">CHANGE</p>
-  </div>
-    </div>
-    <h2 class="ml-2">Categories</h2>
-    <input type="text" placeholder="Search ExcelExchange..." class="w-[30em] h-10 pl-5 rounded-3xl border-2 border-black ">
-    <button class="bg-red-500 w-10 h-10 rounded-full flex items-center justify-center text-white ml-2"><Search></Search></button>
-    <button class="bg-white w-10 h-10 rounded-full flex items-center justify-center border border-aqua font-black ml-2">🤵🏿</button>
-    <button class="w-44 h-10 bg-white border border-black rounded-2xl flex items-center justify-center hover:bg-gray-100 transition ml-2">Orders & Account</button>
-    <button class="w-32 h-10 bg-white border border-black rounded-2xl flex items-center justify-center hover:bg-gray-100 transition ml-2">
-      <span class="text-[25px] mr-2">🗯</span> Support
-    </button>
-    <p class="text-[25px] ml-2">🛒</p>
-  </div>
-</header>
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
-<section class="grid lg:grid-cols-5 lg:gap-4 mt-5">
- <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow hover:border border border-gray-300">
-  <a href="#">
-    <img class="h-60 w-full object-contain mx-auto" 
-         src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png" 
-         alt="">
-
-    <div class="text-sm text-center mx-auto mt-4 space-y-1 break-words">
-
-      <p class="font-semibold break-words">Fjallraven - Foldsack No. 1 Backpack</p>
-
-
-      <p class="text-gray-600">Bag</p>
-
-      <p class="font-bold text-lg">$109.95</p>
-
-      <p class="text-gray-400 text-xs truncate">
-        Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches)...
+  <header class="sticky top-0 z-50 bg-white shadow-md px-4 py-3">
+    <div class="flex flex-wrap items-center gap-3">
+      <p class="flex items-center gap-2 px-2 py-1 rounded-xl hover:bg-gray-100">
+        <span class="h-10 w-10 text-[3em] font-bold flex items-center justify-center text-red-600">EX</span>
+        <span class="flex flex-col leading-none ml-[3px]">
+          <span class="text-red-600 text-lg font-semibold tracking-tight">CEL</span>
+          <span class="text-red-600 text-sm tracking-tight">CHANGE</span>
+        </span>
       </p>
+
+      <button class="h-10 px-4 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
+        Categories
+      </button>
+
+      <form class="flex-1 min-w-[200px] flex items-center gap-2 order-last sm:order-none" role="search">
+        <input
+          type="text"
+          placeholder="Search ExcelExchange..."
+          class="w-full h-10 rounded-3xl border-2 border-black pl-4 pr-3 
+                 placeholder:italic placeholder-red-600"
+        />
+        <button type="submit"
+          class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:opacity-90">
+          🔍
+        </button>
+      </form>
+
+      <button class="bg-white w-10 h-10 rounded-full flex items-center justify-center border font-black hover:bg-gray-100">
+        🤵🏿
+      </button>
+
+      <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
+        <span class="font-medium">Sign in / Register</span>
+        <span class="hidden lg:inline font-semibold ml-2">Orders &amp; Account</span>
+      </button>
+
+      <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 flex items-center gap-2 whitespace-nowrap">
+        <span class="text-xl leading-none">🗯</span>
+        <span class="hidden sm:inline">Support</span>
+      </button>
+
+      <button class="h-10 w-10 rounded-2xl border border-black bg-white hover:bg-gray-100 text-2xl leading-none flex items-center justify-center">
+        🛒
+      </button>
     </div>
-  </a>
-</div>
+  </header>
 
-  
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt="Mens Casual Premium Slim Fit T-Shirts">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">Mens Casual Premium Slim Fit T-Shirts</p>
-        <p>Men's Clothing</p>
-        <p class="font-bold">$22.30</p>
-        <p class="text-gray-400 truncate" title="Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.">
-          Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric...
-        </p>
-      </div>
-    </a>
-  </div>
+  <main class="px-4 py-6 flex-1">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
 
-
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" alt="Mens Cotton Jacket">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">Mens Cotton Jacket</p>
-        <p>Men's Clothing</p>
-        <p class="font-bold">$55.99</p>
-        <p class="text-gray-400 truncate" title="Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.">
-          Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions...
-        </p>
-      </div>
-    </a>
-  </div>
-
-
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png" alt="Mens Casual Slim Fit">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">Mens Casual Slim Fit</p>
-        <p>Men's Clothing</p>
-        <p class="font-bold">$15.99</p>
-        <p class="text-gray-400 truncate" title="The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.">
-          The color could be slightly different between on the screen and in practice...
-        </p>
-      </div>
-    </a>
-  </div>
-
-
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png" alt="John Hardy Women's Legends Naga Bracelet">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">John Hardy Women's Legends Naga Bracelet</p>
-        <p>Jewelery</p>
-        <p class="font-bold">$695.00</p>
-        <p class="text-gray-400 truncate" title="From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.">
-          From our Legends Collection, the Naga was inspired by the mythical water dragon...
-        </p>
-      </div>
-    </a>
-  </div>
-
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png" alt="Solid Gold Petite Micropave">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">Solid Gold Petite Micropave</p>
-        <p>Jewelery</p>
-        <p class="font-bold">$168.00</p>
-        <p class="text-gray-400 truncate" title="Satisfaction Guaranteed. Return or exchange any order within 30 days. Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.">
-          Satisfaction Guaranteed. Return or exchange any order within 30 days...
-        </p>
-      </div>
-    </a>
-  </div>
-
-  
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png" alt="White Gold Plated Princess">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">White Gold Plated Princess</p>
-        <p>Jewelery</p>
-        <p class="font-bold">$9.99</p>
-        <p class="text-gray-400 truncate" title="Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...">
-          Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her...
-        </p>
-      </div>
-    </a>
-  </div>
-
-  
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_t.png" alt="Pierced Owl Rose Gold Plated">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">Pierced Owl Rose Gold Plated</p>
-        <p>Jewelery</p>
-        <p class="font-bold">$10.99</p>
-        <p class="text-gray-400 truncate" title="Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel">
-          Rose Gold Plated Double Flared Tunnel Plug Earrings...
-        </p>
-      </div>
-    </a>
-  </div>
-
-
-  <div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-    <a href="#">
-      <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png" alt="WD 2TB Elements Portable External Hard Drive">
-      <div class="text-sm text-center w-64 mx-auto mt-4">
-        <p class="font-semibold">WD 2TB Elements Portable External Hard Drive</p>
-        <p>Electronics</p>
-        <p class="font-bold">$64.00</p>
-        <p class="text-gray-400 truncate" title="USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system">
-          USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance...
-        </p>
-      </div>
-    </a>
-  </div>
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png" alt="SanDisk SSD PLUS 1TB Internal SSD">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">SanDisk SSD PLUS 1TB Internal SSD</p>
-      <p>Electronics</p>
-      <p class="font-bold">$109.00</p>
-      <p class="text-gray-400 truncate" title="Easy upgrade for faster boot up, shutdown, application load and response...">
-        Easy upgrade for faster boot up, shutdown, application load and response...
-      </p>
+    </section>
+  </main>
+  <footer class="bg-white shadow-inner py-4 mt-auto">
+    <div class="text-center text-sm text-gray-600">
+      © 2025 ExcelExchange. All rights reserved.
     </div>
-  </a>
-</div>
-
-<!-- Product 11 -->
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png" alt="Silicon Power 256GB SSD">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Silicon Power 256GB SSD</p>
-      <p>Electronics</p>
-      <p class="font-bold">$109.00</p>
-      <p class="text-gray-400 truncate" title="3D NAND flash are applied to deliver high transfer speeds...">
-        3D NAND flash are applied to deliver high transfer speeds...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png" alt="WD 4TB Gaming Drive">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">WD 4TB Gaming Drive</p>
-      <p>Electronics</p>
-      <p class="font-bold">$114.00</p>
-      <p class="text-gray-400 truncate" title="Expand your PS4 gaming experience, Play anywhere Fast and easy, setup...">
-        Expand your PS4 gaming experience, Play anywhere Fast and easy, setup...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png" alt="Acer SB220Q bi 21.5 inches Full HD">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Acer SB220Q bi 21.5" Full HD</p>
-      <p>Electronics</p>
-      <p class="font-bold">$599.00</p>
-      <p class="text-gray-400 truncate" title="21.5 inches Full HD IPS display, Radeon FreeSync, Zero-frame design...">
-        21.5 inches Full HD IPS display, Radeon FreeSync, Zero-frame design...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png" alt="Samsung 49-Inch CHG90 Curved Gaming Monitor">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Samsung 49-Inch CHG90 Gaming Monitor</p>
-      <p>Electronics</p>
-      <p class="font-bold">$999.99</p>
-      <p class="text-gray-400 truncate" title="49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen...">
-        49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png" alt="BIYLACLESEN Women's 3-in-1 Snowboard Jacket">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">BIYLACLESEN Women's Snowboard Jacket</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$56.99</p>
-      <p class="text-gray-400 truncate" title="US standard size, Detachable liner, fleece warmth, zippered pockets, adjustable hood...">
-        US standard size, Detachable liner, fleece warmth, zippered pockets...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png" alt="Lock and Love Women's Faux Leather Jacket">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Lock and Love Women's Faux Leather Jacket</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$29.95</p>
-      <p class="text-gray-400 truncate" title="Faux leather, 2-for-one hooded denim style, button detail, hand wash only...">
-        Faux leather, 2-for-one hooded denim style, button detail...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png" alt="Rain Jacket Women Windbreaker">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Rain Jacket Women Windbreaker</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$39.99</p>
-      <p class="text-gray-400 truncate" title="Lightweight, hooded, striped lining, button and zipper closure, 2 side pockets...">
-        Lightweight, hooded, striped lining, button and zipper closure...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_t.png" alt="MBJ Women's Solid Short Sleeve Boat Neck V">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">MBJ Women's Solid Short Sleeve Boat Neck V</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$9.85</p>
-      <p class="text-gray-400 truncate" title="95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem">
-        95% RAYON 5% SPANDEX, Lightweight fabric with great stretch...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_t.png" alt="Opna Women's Short Sleeve Moisture">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">Opna Women's Short Sleeve Moisture</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$7.95</p>
-      <p class="text-gray-400 truncate" title="100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort">
-        Lightweight, breathable, moisture wicking, feminine silhouette...
-      </p>
-    </div>
-  </a>
-</div>
-
-
-<div class="rounded-lg bg-white p-4 transition-transform duration-300 transform hover:scale-105 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:border border-solid border-[rgba(0,0,0,0.8)]">
-  <a href="#">
-    <img class="h-60 w-64 mx-auto" src="https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png" alt="DANVOUY Womens T Shirt Casual Cotton Short">
-    <div class="text-sm text-center w-64 mx-auto mt-4">
-      <p class="font-semibold">DANVOUY Womens T Shirt Casual Cotton Short</p>
-      <p>Women's Clothing</p>
-      <p class="font-bold">$12.99</p>
-      <p class="text-gray-400 truncate" title="95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.">
-        Soft stretch cotton, casual V-neck, great for all seasons...
-      </p>
-    </div>
-  </a>
-</div>
-</section>
-</section>
+  </footer>
 
 </body>
 </html>
+<script src="script.js"></script>
