@@ -9,20 +9,25 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
+  <!-- HEADER -->
   <header class="sticky top-0 z-50 bg-white shadow-md px-4 py-3">
     <div class="flex flex-wrap items-center gap-3">
-      <p class="flex items-center gap-2 px-2 py-1 rounded-xl hover:bg-gray-100">
-        <span class="h-10 w-10 text-[3em] font-bold flex items-center justify-center text-red-600">EX</span>
-        <span class="flex flex-col leading-none ml-[3px]">
+
+      <!-- Logo -->
+      <button class="flex items-center gap-2 px-2 py-1 rounded-xl hover:bg-gray-100">
+        <span class="h-10 w-10 text-2xl font-bold flex items-center justify-center text-red-600">EX</span>
+        <span class="flex flex-col leading-none">
           <span class="text-red-600 text-lg font-semibold tracking-tight">CEL</span>
           <span class="text-red-600 text-sm tracking-tight">CHANGE</span>
         </span>
-      </p>
+      </button>
 
+      <!-- Categories -->
       <button class="h-10 px-4 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
         Categories
       </button>
 
+      <!-- Search -->
       <form class="flex-1 min-w-[200px] flex items-center gap-2 order-last sm:order-none" role="search">
         <input
           type="text"
@@ -36,31 +41,39 @@
         </button>
       </form>
 
+      <!-- Profile -->
       <button class="bg-white w-10 h-10 rounded-full flex items-center justify-center border font-black hover:bg-gray-100">
         🤵🏿
       </button>
 
+      <!-- Orders & Account -->
       <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
         <span class="font-medium">Sign in / Register</span>
         <span class="hidden lg:inline font-semibold ml-2">Orders &amp; Account</span>
       </button>
 
+      <!-- Support -->
       <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 flex items-center gap-2 whitespace-nowrap">
         <span class="text-xl leading-none">🗯</span>
         <span class="hidden sm:inline">Support</span>
       </button>
 
+      <!-- Cart -->
       <button class="h-10 w-10 rounded-2xl border border-black bg-white hover:bg-gray-100 text-2xl leading-none flex items-center justify-center">
         🛒
       </button>
     </div>
   </header>
 
+  <!-- PRODUCTS -->
   <main class="px-4 py-6 flex-1">
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-
+    <section id="products" 
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    
     </section>
   </main>
+
+  <!-- FOOTER -->
   <footer class="bg-white shadow-inner py-4 mt-auto">
     <div class="text-center text-sm text-gray-600">
       © 2025 ExcelExchange. All rights reserved.
@@ -69,4 +82,3 @@
 
 </body>
 </html>
-<script src="script.js"></script>
