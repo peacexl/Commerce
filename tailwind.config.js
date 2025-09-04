@@ -4,5 +4,11 @@
     theme: {
       extend: {},
     },
+    variants: {
+    extend: {
+      placeholderColor: ['responsive', 'focus'],
+      placeholderOpacity: ['responsive', 'focus'],
+    },
+  },
     plugins: [],
   }
