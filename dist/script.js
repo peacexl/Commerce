@@ -1,15 +1,16 @@
-let allProducts = []; // store products for filtering
+let allProducts = []; 
 
 fetch('https://fakestoreapi.com/products')
   .then(response => response.json())
   .then(data => {
-    allProducts = data; // save all products
-    renderProducts(allProducts); // show all initially
+    allProducts = data; 
+    renderProducts(allProducts); 
 
-    // Setup search
     const searchInput = document.querySelector("input[placeholder='Search ExcelExchange...']");
-    searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase();
+    const searchButton = document.querySelector("button.bg-red-500"); 
+
+    searchButton.addEventListener("click", () => {
+      const query = searchInput.value.toLowerCase().trim();
       const filtered = allProducts.filter(product =>
         product.title.toLowerCase().includes(query) ||
         product.category.toLowerCase().includes(query) ||
@@ -19,7 +20,6 @@ fetch('https://fakestoreapi.com/products')
     });
   });
 
-// function to render products
 function renderProducts(products) {
   const productsContainer = document.querySelector('main section');
   productsContainer.innerHTML = '';
