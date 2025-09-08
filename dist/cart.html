@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - ExcelExchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">🛒 My Cart</h1>
+    <a href="index.html" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">⬅ Back to Shop</a>
+  </header>
+
+  <!-- Cart Items -->
+  <main id="cartContainer" class="flex-1 p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Items will be injected here -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow p-4 flex justify-between items-center">
+    <p class="font-bold">Total: $<span id="cartTotal">0.00</span></p>
+    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Checkout</button>
+  </footer>
+
+  <script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartContainer = document.getElementById("cartContainer");
+  const cartTotal = document.getElementById("cartTotal");
+
+  function renderCart() {
+    cartContainer.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      cartContainer.innerHTML = `<p class="col-span-full text-center text-gray-500">Your cart is empty</p>`;
+      cartTotal.textContent = "0.00";
+      return;
+    }
+
+    cart.forEach((product, index) => {
+      total += product.price * product.quantity;
+
+      const item = document.createElement("div");
+      item.className = "bg-white p-4 rounded shadow flex flex-col items-center";
+      item.innerHTML = `
+        <img src="${product.image}" alt="${product.title}" class="h-40 object-contain mb-4">
+        <h2 class="font-semibold text-center">${product.title}</h2>
+        <p class="text-gray-600">${product.category}</p>
+        <p class="font-bold text-lg mb-2">$${product.price.toFixed(2)}</p>
+
+        <div class="flex items-center gap-2 mb-2">
+          <button class="px-2 py-1 bg-gray-200 rounded decreaseBtn">-</button>
+          <span class="font-bold">${product.quantity}</span>
+          <button class="px-2 py-1 bg-gray-200 rounded increaseBtn">+</button>
+        </div>
+
+        <p class="text-sm text-gray-500">Subtotal: $${(product.price * product.quantity).toFixed(2)}</p>
+
+        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mt-2 removeBtn">
+          Remove
+        </button>
+      `;
+
+      // Increase quantity
+      item.querySelector(".increaseBtn").addEventListener("click", () => {
+        cart[index].quantity += 1;
+        saveAndRender();
+      });
+
+      // Decrease quantity
+      item.querySelector(".decreaseBtn").addEventListener("click", () => {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+        } else {
+          cart.splice(index, 1); // remove if 0
+        }
+        saveAndRender();
+      });
+
+      // Remove item
+      item.querySelector(".removeBtn").addEventListener("click", () => {
+        cart.splice(index, 1);
+        saveAndRender();
+      });
+
+      cartContainer.appendChild(item);
+    });
+
+    cartTotal.textContent = total.toFixed(2);
+  }
+
+  function saveAndRender() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  renderCart();
+</script>
+</body>
+</html>

@@ -21,9 +21,10 @@
         </span>
       </button>
 
-      <button class="h-10 px-4 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
-        Categories
-      </button>
+      <select id="categoryDropdown" 
+  class="h-8 px-4 rounded-2xl border border-black bg-white hover:bg-red-600 whitespace-nowrap text-[0.9em]">
+  <option value="all">All Categories</option>
+</select>
 
       <form class="flex-1 min-w-[200px] flex items-center gap-2 order-last sm:order-none" role="search">
         <input type="text" placeholder="Search ExcelExchange..." class="w-full h-10 rounded-3xl border-2 border-black pl-4 pr-3 placeholder:italic placeholder-red-600"/>
@@ -48,19 +49,26 @@
       </button>
 
 
-      <button class="h-10 w-10 rounded-2xl border border-black bg-white hover:bg-gray-100 text-2xl leading-none flex items-center justify-center">
-        🛒
-      </button>
+      <a href="cart.html" class="relative h-10 w-10 rounded-2xl border border-black bg-white hover:bg-gray-100 text-2xl leading-none flex items-center justify-center">
+            🛒
+      <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden transform transition-transform duration-200"></span>
+      </a>
+
     </div>
   </header>
 
 
   <main class="px-4 py-6 flex-1">
     <section id="products" 
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
     
     </section>
   </main>
+
+  <button id="backHomeBtn" 
+    class="hidden h-8 shadow border border-transparent bg-red-400 hover:bg-red-500 whitespace-nowrap text-[0.9em] ml-2 w-[8em]">
+            Back to home
+  </button>
 
   <footer class="bg-white shadow-inner py-4 mt-auto">
     <div class="text-center text-sm text-gray-600">
@@ -68,6 +76,8 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+
+  <div id="toastContainer" class="fixed bottom-5 right-5 space-y-2 z-50"></div>
 </body>
 </html>
+<script src="script.js"></script>
