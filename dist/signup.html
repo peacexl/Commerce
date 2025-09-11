@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="login-container"> <!-- reused login-container styling -->
+    <h2>Create Account</h2>
+    <form id="signupForm">
+      
+      <div class="input-group">
+        <i class="fa-solid fa-user input-icon"></i>
+        <input type="text" id="signupUsername" required placeholder=" ">
+        <label for="signupUsername">Username</label>
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-envelope input-icon"></i>
+        <input type="email" id="signupEmail" required placeholder=" ">
+        <label for="signupEmail">Email</label>
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-lock input-icon"></i>
+        <input type="password" id="signupPassword" required placeholder=" ">
+        <label for="signupPassword">Password</label>
+        <i class="fa-solid fa-eye toggle-password" id="toggleSignupPassword"></i>
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-lock input-icon"></i>
+        <input type="password" id="signupConfirm" required placeholder=" ">
+        <label for="signupConfirm">Confirm Password</label>
+        <i class="fa-solid fa-eye toggle-password" id="toggleSignupConfirm"></i>
+      </div>
+
+      <button type="submit" class="btn-save">Sign Up</button>
+    </form>
+    
+    <p class="extra-links">Already have an account? <a href="index.html">Login</a></p>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    function togglePassword(inputId, toggleId) {
+      const input = document.getElementById(inputId);
+      const toggle = document.getElementById(toggleId);
+      toggle.addEventListener("click", () => {
+        const type = input.type === "password" ? "text" : "password";
+        input.type = type;
+        toggle.classList.toggle("fa-eye-slash");
+      });
+    }
+    togglePassword("signupPassword", "toggleSignupPassword");
+    togglePassword("signupConfirm", "toggleSignupConfirm");
+
+    // Signup logic
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("signupUsername").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value.trim();
+      const confirm = document.getElementById("signupConfirm").value.trim();
+
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some(u => u.email === email)) {
+        alert("An account with this email already exists!");
+        return;
+      }
+
+      const newUser = {
+        username,
+        email,
+        password,
+        memberSince: new Date().toLocaleDateString()
+      };
+
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+      alert("Account created successfully!");
+      window.location.href = "shop.html";
+    });
+  </script>
+</body>
+</html>

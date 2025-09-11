@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  padding: 20px;
+}
+
+.login-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 40px 14px 42px; /* space for icon */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 42px;
+  top: 14px;
+  color: #777;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  background: transparent;
+}
+
+.input-group i.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.input-group i.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Floating label effect */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 38px;
+  font-size: 0.75rem;
+  background: #fff;
+  padding: 0 5px;
+  color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.extra-links {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+.extra-links a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 6px;
+  transition: 0.2s;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Account Page */
+.account-container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.account-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.account-container label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.account-container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-row button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-save {
+  background: #007bff;
+  color: #fff;
+}
+
+.btn-save:hover {
+  background: #0056b3;
+}
+
+.btn-logout {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-logout:hover {
+  background: #a71d2a;
+}
+

@@ -1,82 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ExcelExchange</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="src/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body>
 
-  <header class="sticky top-0 z-50 bg-white shadow-md px-4 py-3">
-    <div class="flex flex-wrap items-center gap-3">
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <i class="fa-solid fa-user input-icon"></i>
+        <input type="text" id="username" required placeholder=" ">
+        <label for="username">Username / Email</label>
+      </div>
 
-      <button class="flex items-center gap-2 px-2 py-1 rounded-xl hover:bg-gray-100">
-        <span class="h-10 w-10 text-2xl font-bold flex items-center justify-center text-red-600">EX</span>
-        <span class="flex flex-col leading-none">
-          <span class="text-red-600 text-lg font-semibold tracking-tight">CEL</span>
-          <span class="text-red-600 text-sm tracking-tight">CHANGE</span>
-        </span>
-      </button>
+      <div class="input-group">
+        <i class="fa-solid fa-lock input-icon"></i>
+        <input type="password" id="password" required placeholder=" ">
+        <label for="password">Password</label>
+        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+      </div>
 
-      <select id="categoryDropdown" 
-  class="h-8 px-4 rounded-2xl border border-black bg-white hover:bg-red-600 whitespace-nowrap text-[0.9em]">
-  <option value="all">All Categories</option>
-</select>
+      <button type="submit">Login</button>
 
-      <form class="flex-1 min-w-[200px] flex items-center gap-2 order-last sm:order-none" role="search">
-        <input type="text" placeholder="Search ExcelExchange..." class="w-full h-10 rounded-3xl border-2 border-black pl-4 pr-3 placeholder:italic placeholder-red-600"/>
-        <button type="submit"
-          class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:opacity-90">
-          🔍
-        </button>
-      </form>
+      <div class="extra-links">
+        <a href="forgetpass.html">Forgot Password?</a> | <a href="signup.html">Sign Up</a>
+      </div>
+    </form>
+  </div>
 
-      <button class="bg-white w-10 h-10 rounded-full flex items-center justify-center border font-black hover:bg-gray-100">
-        🤵🏿
-      </button>
+  <script>
+    // Toggle password visibility
+    document.getElementById("togglePassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("password");
+      const type = passwordInput.type === "password" ? "text" : "password";
+      passwordInput.type = type;
+      this.classList.toggle("fa-eye-slash");
+    });
 
-      <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap">
-        <span class="font-medium">Sign in / Register</span>
-      </button>
-      <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 whitespace-nowrap"><span class="hidden lg:inline font-semibold ml-2">Orders</span></button>
+    // Login logic
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-      <button class="h-10 px-3 rounded-2xl border border-black bg-white hover:bg-gray-100 flex items-center gap-2 whitespace-nowrap">
-        <span class="text-xl leading-none">🗯</span>
-        <span class="hidden sm:inline">Support</span>
-      </button>
+      const usernameOrEmail = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
+      const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      <a href="cart.html" class="relative h-10 w-10 rounded-2xl border border-black bg-white hover:bg-gray-100 text-2xl leading-none flex items-center justify-center">
-            🛒
-      <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden transform transition-transform duration-200"></span>
-      </a>
+      // Match user by username OR email
+      const matchedUser = users.find(
+        u => (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.password === password
+      );
 
-    </div>
-  </header>
-
-
-  <main class="px-4 py-6 flex-1">
-    <section id="products" 
-      class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-    </section>
-  </main>
-
-  <button id="backHomeBtn" 
-    class="hidden h-8 shadow border border-transparent bg-red-400 hover:bg-red-500 whitespace-nowrap text-[0.9em] ml-2 w-[8em]">
-            Back to home
-  </button>
-
-  <footer class="bg-white shadow-inner py-4 mt-auto">
-    <div class="text-center text-sm text-gray-600">
-      © 2025 ExcelExchange. All rights reserved.
-    </div>
-  </footer>
-
-
-  <div id="toastContainer" class="fixed bottom-5 right-5 space-y-2 z-50"></div>
+      if (matchedUser) {
+        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+        alert("Login successful! Welcome " + matchedUser.username);
+        window.location.href = "shop.html"; // redirect to shop after login
+      } else {
+        alert("Invalid username/email or password.");
+      }
+    });
+  </script>
 </body>
 </html>
-<script src="script.js"></script>

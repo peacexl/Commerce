@@ -11,24 +11,25 @@
   <!-- Header -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
     <h1 class="text-xl font-bold">🛒 My Cart</h1>
-    <a href="index.html" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">⬅ Back to Shop</a>
+    <a href="shop.html" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">⬅ Back to Shop</a>
   </header>
 
   <!-- Cart Items -->
-  <main id="cartContainer" class="flex-1 p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-    <!-- Items will be injected here -->
-  </main>
+  <main id="cartContainer" class="flex-1 p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3"></main>
 
   <!-- Footer -->
   <footer class="bg-white shadow p-4 flex justify-between items-center">
     <p class="font-bold">Total: $<span id="cartTotal">0.00</span></p>
-    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Checkout</button>
+    <button id="checkoutBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+      Checkout
+    </button>
   </footer>
 
   <script>
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartContainer = document.getElementById("cartContainer");
   const cartTotal = document.getElementById("cartTotal");
+  const checkoutBtn = document.getElementById("checkoutBtn");
 
   function renderCart() {
     cartContainer.innerHTML = "";
@@ -64,23 +65,23 @@
         </button>
       `;
 
-      // Increase quantity
+      // Increase
       item.querySelector(".increaseBtn").addEventListener("click", () => {
         cart[index].quantity += 1;
         saveAndRender();
       });
 
-      // Decrease quantity
+      // Decrease
       item.querySelector(".decreaseBtn").addEventListener("click", () => {
         if (cart[index].quantity > 1) {
           cart[index].quantity -= 1;
         } else {
-          cart.splice(index, 1); // remove if 0
+          cart.splice(index, 1);
         }
         saveAndRender();
       });
 
-      // Remove item
+      // Remove
       item.querySelector(".removeBtn").addEventListener("click", () => {
         cart.splice(index, 1);
         saveAndRender();
@@ -97,7 +98,37 @@
     renderCart();
   }
 
+  // Checkout logic
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    // Load existing orders
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    // Create new order
+    const newOrder = {
+      id: Date.now(),
+      date: new Date().toLocaleString(),
+      items: [...cart],
+      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    };
+
+    // Save order
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    // Clear cart
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Redirect to Orders page
+    window.location.href = "orders.html";
+  });
+
   renderCart();
-</script>
+  </script>
 </body>
 </html>

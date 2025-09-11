@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - ExcelExchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-red-600">ExcelExchange</h1>
+    <a href="shop.html" class="text-sm text-blue-600 hover:underline">← Back to Shop</a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 max-w-4xl mx-auto space-y-8">
+
+    <!-- Contact Form -->
+    <section class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-semibold mb-4">Contact Support</h2>
+      <form id="supportForm" class="space-y-4">
+        <input type="text" id="name" placeholder="Your Name" required
+          class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500" />
+        <input type="email" id="email" placeholder="Your Email" required
+          class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500" />
+        <textarea id="message" rows="4" placeholder="Your Message" required
+          class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500"></textarea>
+        <button type="submit"
+          class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">
+          Submit
+        </button>
+      </form>
+      <p id="formStatus" class="mt-3 text-green-600 hidden">✅ Message sent successfully!</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        <details class="border rounded-lg p-3">
+          <summary class="cursor-pointer font-medium">How can I track my order?</summary>
+          <p class="mt-2 text-gray-600">You can track your order from the "Orders" section in your account page.</p>
+        </details>
+        <details class="border rounded-lg p-3">
+          <summary class="cursor-pointer font-medium">What is your return policy?</summary>
+          <p class="mt-2 text-gray-600">Returns are accepted within 14 days of delivery. Items must be unused and in original packaging.</p>
+        </details>
+        <details class="border rounded-lg p-3">
+          <summary class="cursor-pointer font-medium">How do I contact customer service?</summary>
+          <p class="mt-2 text-gray-600">Fill the form above, and our team will respond within 24 hours.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow-inner py-4 text-center text-sm text-gray-600">
+    © 2025 ExcelExchange. All rights reserved.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const supportForm = document.getElementById("supportForm");
+    const formStatus = document.getElementById("formStatus");
+
+    supportForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) return;
+
+      // Save to localStorage
+      let supportMessages = JSON.parse(localStorage.getItem("supportMessages")) || [];
+      supportMessages.push({ name, email, message, date: new Date().toISOString() });
+      localStorage.setItem("supportMessages", JSON.stringify(supportMessages));
+
+      supportForm.reset();
+      formStatus.classList.remove("hidden");
+
+      setTimeout(() => {
+        formStatus.classList.add("hidden");
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

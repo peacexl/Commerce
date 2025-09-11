@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Account - ExcelExchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-red-600">ExcelExchange</h1>
+    <a href="shop.html" class="text-sm text-blue-600 hover:underline">← Back to Shop</a>
+  </header>
+
+  <!-- Account Section -->
+  <main class="flex-1 flex flex-col items-center justify-center p-6">
+    <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md text-center">
+      
+      <!-- Avatar -->
+      <div class="relative inline-block">
+        <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile" 
+             class="w-24 h-24 rounded-full object-cover border-2 border-gray-300 mx-auto">
+        <label for="uploadPic" 
+               class="absolute bottom-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full cursor-pointer hover:bg-red-600">
+          ✎
+        </label>
+        <input type="file" id="uploadPic" accept="image/*" class="hidden">
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-4">Your Account</h2>
+
+      <!-- Account Info -->
+      <div id="accountInfo" class="space-y-3 text-left">
+        <p><span class="font-medium">Name:</span> <span id="accName">-</span></p>
+        <p><span class="font-medium">Email:</span> <span id="accEmail">-</span></p>
+        <p><span class="font-medium">Member Since:</span> <span id="accSince">-</span></p>
+      </div>
+
+      <!-- Edit Profile Form (hidden by default) -->
+      <form id="editForm" class="hidden space-y-4 mt-4 text-left">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="editName" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-red-300">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="editEmail" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-red-300">
+        </div>
+        <div class="flex gap-3">
+          <button type="submit" class="flex-1 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">
+            Save
+          </button>
+          <button type="button" id="cancelEdit" class="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+      <!-- Action Buttons -->
+      <div id="actionButtons" class="mt-6 flex gap-3">
+        <a href="orders.html" class="flex-1 bg-red-500 text-white py-2 rounded-lg text-center hover:bg-red-600">
+          View Orders
+        </a>
+        <button id="editBtn" class="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300">
+          Edit Profile
+        </button>
+      </div>
+
+      <button id="logoutBtn" class="w-full mt-4 bg-black text-white py-2 rounded-lg hover:bg-gray-800">
+        Logout
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow-inner py-4 text-center text-sm text-gray-600">
+    © 2025 ExcelExchange. All rights reserved.
+  </footer>
+
+  <script>
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    // Redirect if not logged in
+    if (!currentUser) {
+      alert("Please log in first!");
+      window.location.href = "index.html";
+    }
+
+    // Display user info
+    document.getElementById("accName").textContent = currentUser.username;
+    document.getElementById("accEmail").textContent = currentUser.email;
+    document.getElementById("accSince").textContent = currentUser.memberSince;
+
+    // Display profile picture if available
+    if (currentUser.profilePic) {
+      document.getElementById("profilePic").src = currentUser.profilePic;
+    }
+
+    // Handle Edit Profile
+    const editBtn = document.getElementById("editBtn");
+    const editForm = document.getElementById("editForm");
+    const accountInfo = document.getElementById("accountInfo");
+    const actionButtons = document.getElementById("actionButtons");
+
+    editBtn.addEventListener("click", () => {
+      accountInfo.classList.add("hidden");
+      actionButtons.classList.add("hidden");
+      editForm.classList.remove("hidden");
+
+      document.getElementById("editName").value = currentUser.username;
+      document.getElementById("editEmail").value = currentUser.email;
+    });
+
+    document.getElementById("cancelEdit").addEventListener("click", () => {
+      editForm.classList.add("hidden");
+      accountInfo.classList.remove("hidden");
+      actionButtons.classList.remove("hidden");
+    });
+
+    document.getElementById("editForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const newName = document.getElementById("editName").value.trim();
+      const newEmail = document.getElementById("editEmail").value.trim();
+
+      if (!newName || !newEmail) {
+        alert("Fields cannot be empty!");
+        return;
+      }
+
+      // Update users list
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const index = users.findIndex(u => u.email === currentUser.email);
+      if (index !== -1) {
+        users[index].username = newName;
+        users[index].email = newEmail;
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+
+      currentUser.username = newName;
+      currentUser.email = newEmail;
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      alert("Profile updated successfully!");
+      location.reload();
+    });
+
+    // Handle Profile Picture Upload
+    document.getElementById("uploadPic").addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imgData = event.target.result;
+          document.getElementById("profilePic").src = imgData;
+
+          // Save to localStorage
+          currentUser.profilePic = imgData;
+          localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+          let users = JSON.parse(localStorage.getItem("users")) || [];
+          const index = users.findIndex(u => u.email === currentUser.email);
+          if (index !== -1) {
+            users[index].profilePic = imgData;
+            localStorage.setItem("users", JSON.stringify(users));
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      alert("You have been logged out!");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
